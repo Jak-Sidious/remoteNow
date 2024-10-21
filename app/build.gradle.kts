@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -72,9 +73,16 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom.v20230800))
     implementation("androidx.compose.material3:material3-window-size-class")
     implementation(libs.androidx.room.runtime)
-    implementation("androidx.room:room-ktx:2.6.1")
+    implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler.v221)
     ksp(libs.androidx.room.compiler)
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+    implementation(libs.okhttp)
+    implementation(libs.androidx.hilt.navigation.compose)
+    val composeBom = platform("androidx.compose:compose-bom:2024.09.03")
+    implementation(composeBom)
+
+    debugImplementation(libs.ui.tooling)
+    implementation(libs.ui.tooling.preview)
 }
