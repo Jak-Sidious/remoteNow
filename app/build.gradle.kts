@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -40,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
@@ -70,6 +72,9 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom.v20230800))
     implementation("androidx.compose.material3:material3-window-size-class")
     implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
-
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp(libs.androidx.room.compiler.v221)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 }
